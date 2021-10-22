@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[scripts]
+django = "./manage.py runserver"
+pip-review = "pip list --outdated"
+check_syntax = "flake8 . --exclude .venv --count --select=E9,F63,F7,F82 --show-source --statistics"
+check_style = "flake8 . --exclude .venv --count --max-complexity=10 --max-line-length=127 --statistics"
+tests = "python -m unittest discover tests"
+
+[dev-packages]
+flake8 = "*"
+iPython = "*"
+
+[packages]
+django = "*"
+
+[requires]
+python_version = "3.9"

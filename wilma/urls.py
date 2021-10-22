@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from wilma import xero
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Xero OAuth2 URLs
+    path('xero/', xero.start_xero_auth),
+    path('xero/auth', xero.process_callback),
+    path('xero/test', xero.test_xero_auth),
 ]

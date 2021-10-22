@@ -69,6 +69,14 @@ AUTH_PASSWORD_VALIDATORS = [
     { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
+# Django Caching
+# https://docs.djangoproject.com/en/3.2/topics/cache/
+{
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -86,6 +94,12 @@ TIME_ZONE = "America/Vancouver"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+# Xero Oauth2 Settings
+## https://developer.xero.com
+XERO_CLIENT_ID='your_client_id'
+XERO_SECRET='your_client_secre'
+XERO_CALLBACK='/xero/auth'
 
 # Load the local settings file
 from .local_settings import *

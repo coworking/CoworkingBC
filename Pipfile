@@ -16,6 +16,7 @@ iPython = "*"
 
 [packages]
 django = "~=3.2"
+pyxero = "~=0.9"
 
 [requires]
 python_version = "3.9"

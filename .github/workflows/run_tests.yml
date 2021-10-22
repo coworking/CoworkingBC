@@ -36,7 +36,7 @@ jobs:
     - name: Analysing the code
       run: |
         pipenv run check_syntax
-        pipenv run check_style
+        # pipenv run check_style
     - name: Run migrations
       run: pipenv run migrate
     - name: Run Tests

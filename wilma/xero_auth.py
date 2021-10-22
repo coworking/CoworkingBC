@@ -4,7 +4,7 @@ from xero.constants import XeroScopes
 
 from django.conf import settings
 from django.core.cache import caches
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 
 def start_xero_auth(request):
@@ -32,6 +32,7 @@ def process_callback(request):
     credentials.verify(auth_secret)
     credentials.set_default_tenant()
     caches['default'].set('xero_creds', credentials.state)
+    return HttpResponse("OK!")
 
 
 def test_xero_auth(request):

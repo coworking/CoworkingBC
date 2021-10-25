@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-from wilma import views, xero_auth
+from wilma import views
 
 
 urlpatterns = [
@@ -12,11 +12,9 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.WilmaLogin.as_view(), name='wilma_login'),
     path('logout/', views.WilmaLogout.as_view(), name='wilma_logout'),
-
-    # Xero OAuth2 URLs
-    path('xero/', xero_auth.start_xero_auth),
-    path('xero/auth', xero_auth.process_callback),
-    path('xero/test', xero_auth.test_xero_auth),
+    path('xero/', views.xero_start_auth),
+    path('xero/auth', views.xero_callback),
+    path('xero_contacts', views.xero_contacts, name='xero_contacts'),
 
     path('admin/', admin.site.urls),
 ]

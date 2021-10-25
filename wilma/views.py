@@ -64,18 +64,23 @@ def xero_callback(request):
     credentials.verify(auth_secret)
     credentials.set_default_tenant()
     caches['default'].set('xero_creds', credentials.state)
-    return HttpResponse("OK!")
+    return HttpResponseRedirect(reverse('xero_contacts'))
 
 
 @staff_member_required
 def xero_contacts(request):
     cred_state = caches['default'].get('xero_creds')
+    if not cred_state:
+        return HttpResponseRedirect(reverse('xero_auth'))
+
     credentials = OAuth2Credentials(**cred_state)
     if credentials.expired():
         credentials.refresh()
         caches['default'].set('xero_creds', credentials.state)
-    xero = Xero(credentials)
-    contacts = xero.contacts.all()
+    xero_api = Xero(credentials)
+    print(f"xero_api: {xero_api}")
+    contacts = xero_api.contacts.all()
+    print(f"contacts: {contacts}")
     context = {
         'contacts': contacts
     }

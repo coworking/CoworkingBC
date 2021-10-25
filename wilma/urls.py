@@ -12,9 +12,9 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.WilmaLogin.as_view(), name='wilma_login'),
     path('logout/', views.WilmaLogout.as_view(), name='wilma_logout'),
-    path('xero/', views.xero_start_auth),
+    path('xero/', views.xero_start_auth, name='xero_auth'),
     path('xero/auth', views.xero_callback),
-    path('xero_contacts', views.xero_contacts, name='xero_contacts'),
+    path('xero/contacts', views.xero_contacts, name='xero_contacts'),
 
     path('admin/', admin.site.urls),
 ]

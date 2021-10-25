@@ -7,6 +7,8 @@ DEBUG = False
 SECRET_KEY = 'super-secret'
 ALLOWED_HOSTS = []
 
+APP_TITLE = "Wilma"
+
 # Application definition
 
 INSTALLED_APPS = [

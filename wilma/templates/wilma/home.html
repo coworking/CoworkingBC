@@ -1,0 +1,10 @@
+{% extends "wilma/base.html" %}
+{% load settings_value %}
+{% load static %}
+
+{% block sub-title %}: Home{% endblock %}
+
+{% block content %}
+  <h2>{% settings_value 'APP_TITLE' %} Home</h2>
+  <p>This page is a work in progress....</p>
+{% endblock %}

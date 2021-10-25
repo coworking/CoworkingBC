@@ -1,0 +1,34 @@
+{% extends "wilma/base.html" %}
+{% load settings_value %}
+{% load static %}
+
+{% block content %}
+  <h3>{% settings_value 'APP_TITLE' %} Login</h3>
+  <form style="width:60%;" action="." method="post" id="login-form">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{% url 'home' %}"">
+    <table style="width:50%;">
+      <tr>
+        <td>
+          <label class="required" for="id_username">Email address:</label>
+        </td>
+        <td>
+          <input type="text" name="username" autofocus required id="id_username">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label class="required" for="id_password">Password:</label>
+        </td>
+        <td>
+          <input type="password" name="password" required id="id_password">
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2 style="text-align: center; border: none;">
+          <input type="submit" value="Log in" />
+        </td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}

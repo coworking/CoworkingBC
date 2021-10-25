@@ -9,11 +9,11 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 def start_xero_auth(request):
     client_id = settings.XERO_CLIENT_ID
-    client_secret = settings.XERO_SECRET
-    callback_uri = settings.XERO_CALLBACK
+    xero_secret = settings.XERO_SECRET
+    xero_callback = settings.XERO_CALLBACK
 
     credentials = OAuth2Credentials(
-        client_id, client_secret, callback_uri=callback_uri,
+        client_id, xero_secret, callback_uri=xero_callback,
         scope=[
             XeroScopes.OFFLINE_ACCESS,
             XeroScopes.ACCOUNTING_CONTACTS,

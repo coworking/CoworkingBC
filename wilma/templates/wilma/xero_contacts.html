@@ -1,0 +1,11 @@
+{% extends "wilma/base.html" %}
+{% load static %}
+
+{% block sub-title %}: Home{% endblock %}
+
+{% block content %}
+  <h2>Xero Contacts</h2>
+  {% for contact in contacts %}
+    {{ contact.email }}
+  {% endfor %}
+{% endblock %}

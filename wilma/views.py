@@ -73,14 +73,34 @@ def xero_contacts(request):
     if not cred_state:
         return HttpResponseRedirect(reverse('xero_auth'))
 
+    # {
+    #     'ContactID': 'xxx',
+    #     'AccountNumber': '',
+    #     'ContactStatus': 'ACTIVE',
+    #     'Name': 'Kanawha Design',
+    #     'FirstName': 'Jacob',
+    #     'LastName': 'Sayles',
+    #     'EmailAddress': 'jacob@kanawha.design',
+    #     'BankAccountDetails': '',
+    #     'Addresses': [{'AddressType': 'STREET', 'AddressLine1': '201 - 1405 St Paul Street', 'AddressLine2': '', 'AddressLine3': '', 'AddressLine4': '', 'City': 'Kelowna', 'Region': 'BC', 'PostalCode': 'V1Y 2E4', 'Country': 'Canada', 'AttentionTo': ''}, {'AddressType': 'POBOX', 'AddressLine1': '201 - 1405 St Paul Street', 'AddressLine2': '', 'AddressLine3': '', 'AddressLine4': '', 'City': 'Kelowna', 'Region': 'BC', 'PostalCode': 'V1Y 2E4', 'Country': 'Canada', 'AttentionTo': ''}],
+    #     'Phones': [{'PhoneType': 'DDI', 'PhoneNumber': '', 'PhoneAreaCode': '', 'PhoneCountryCode': ''}, {'PhoneType': 'DEFAULT', 'PhoneNumber': '821-1932', 'PhoneAreaCode': '778', 'PhoneCountryCode': '+1'}, {'PhoneType': 'FAX', 'PhoneNumber': '', 'PhoneAreaCode': '', 'PhoneCountryCode': ''}, {'PhoneType': 'MOBILE', 'PhoneNumber': '', 'PhoneAreaCode': '', 'PhoneCountryCode': ''}],
+    #     'UpdatedDateUTC': datetime.datetime(2021, 9, 19, 15, 48, 16, 747000),
+    #     'ContactGroups': [],
+    #     'IsSupplier': False,
+    #     'IsCustomer': True,
+    #     'DefaultCurrency': 'CAD',
+    #     'Website': 'https://kanawha.design',
+    #     'ContactPersons': [],
+    #     'HasAttachments': False,
+    #     'HasValidationErrors': False
+    # }
+
     credentials = OAuth2Credentials(**cred_state)
     if credentials.expired():
         credentials.refresh()
         caches['default'].set('xero_creds', credentials.state)
     xero_api = Xero(credentials)
-    print(f"xero_api: {xero_api}")
     contacts = xero_api.contacts.all()
-    print(f"contacts: {contacts}")
     context = {
         'contacts': contacts
     }

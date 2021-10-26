@@ -5,7 +5,32 @@
 
 {% block content %}
   <h2>Xero Contacts</h2>
+  <table>
+    <tr>
+      <th>Space</th>
+      <th>Contact</th>
+      <th>Address</th>
+    </tr>
   {% for contact in contacts %}
-    {{ contact.email }}
+    {% if contact.IsCustomer %}
+      <tr>
+        <td>
+          <a href="{{ contact.Website }}">
+            {{ contact.Name }}
+          </a>
+        </td>
+        <td>
+          <a href="mailto:{{ contact.EmailAddress }}">
+            {{ contact.FirstName }} {{ contact.LastName }}
+          </a>
+        </td>
+        <td>
+          {% with contact.Addresses|first as address %}
+            {{ address.AddressLine1 }}, {{ address.City }}
+          {% endwith %}
+        </td>
+      </tr>
+    {% endif %}
   {% endfor %}
+  </table>
 {% endblock %}

@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -104,4 +105,7 @@ XERO_SECRET='your_client_secre'
 XERO_CALLBACK='/xero/auth'
 
 # Load the local settings file
-from .local_settings import *
+if os.path.isfile('wilma/local_settings.py'):
+    from wilma.local_settings import *
+else:
+    print("No local settings file found")

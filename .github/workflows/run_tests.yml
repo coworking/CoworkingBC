@@ -38,7 +38,7 @@ jobs:
         pipenv run check_syntax
         # pipenv run check_style
     - name: Run migrations
-      run: pipenv run migrate
+      run: pipenv run ./manage.py migrate
     - name: Run Tests
       run: |
-        pipenv run tests
+        pipenv run ./manage.py test

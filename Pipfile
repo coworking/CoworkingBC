@@ -11,12 +11,10 @@ check_style = "flake8 . --exclude .venv --count --max-complexity=10 --max-line-l
 tests = "python -m unittest discover tests"
 
 [dev-packages]
-flake8 = "*"
 iPython = "*"
+flake8 = "*"
+black = "*"
 
 [packages]
-django = "~=3.2"
+django = "~=4.0"
 pyxero = "~=0.9"
-
-[requires]
-python_version = "3.9"
